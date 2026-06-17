@@ -4,7 +4,7 @@
  * The bridge between "skills" and an actual language model, plus the small text
  * utilities every local generator uses.
  *
- * DESIGN: The Command Center runs FULLY OFFLINE by default. Every skill ships a
+ * DESIGN: The Waterfall Marketing runs FULLY OFFLINE by default. Every skill ships a
  * deterministic, template-based generator so the whole app is demoable with
  * zero setup and no API keys. When you are ready to use a real model, you flip a
  * single switch (an env var) and the same skills route their free-text fields

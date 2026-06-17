@@ -1,8 +1,8 @@
 /**
  * types/index.ts
  * ----------------------------------------------------------------------------
- * The single source of truth for every data shape in the Waterfall Command
- * Center. Every module (Campaigns, SEO, Email, Video, Social, Assets) and the
+ * The single source of truth for every data shape in Waterfall Marketing.
+ * Every module (Campaigns, SEO, Email, Video, Social, Assets) and the
  * AI skill layer reference these types so data stays consistent end-to-end.
  *
  * If you add a new feature module, add its entity here first, then wire it into

@@ -1,5 +1,5 @@
 /**
- * Dashboard — the Command Center home. A high-level overview of everything in
+ * Dashboard — the Waterfall Marketing home. A high-level overview of everything in
  * flight (campaigns, content, sequences, scheduled posts) plus quick-action
  * tiles that jump straight into the AI-assisted flows.
  */
@@ -44,7 +44,7 @@ export default function Dashboard() {
   return (
     <div className="animate-slide-in">
       <PageHeader
-        title="Command Center"
+        title="Waterfall Marketing"
         description={`${data.brand.name} — ${data.brand.tagline} Here's everything in motion across your apps.`}
         actions={
           <Button onClick={() => navigate("/campaigns")}>

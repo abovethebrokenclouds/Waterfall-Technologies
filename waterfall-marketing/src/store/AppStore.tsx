@@ -1,7 +1,7 @@
 /**
  * store/AppStore.tsx
  * ----------------------------------------------------------------------------
- * The single, predictable state container for the whole Command Center.
+ * The single, predictable state container for the whole Waterfall Marketing.
  *
  * WHY THIS PATTERN: One React Context + localStorage persistence. No Redux, no
  * external store — easy for a human (or an AI agent) to read, modify, and debug.
@@ -67,7 +67,7 @@ interface StoreValue {
   reset: () => void;
 }
 
-const STORAGE_KEY = "waterfall-command-center:v1";
+const STORAGE_KEY = "waterfall-marketing:v1";
 
 const StoreContext = createContext<StoreValue | null>(null);
 

@@ -31,7 +31,7 @@ export default function SettingsPage() {
               <span className="font-medium">{live ? "Live model connected" : "Local engine (offline)"}</span>
             </div>
             <p className="text-muted-foreground">
-              The Command Center works fully offline using built-in generators. To use a real model,
+              The Waterfall Marketing works fully offline using built-in generators. To use a real model,
               set these environment variables and redeploy:
             </p>
             <pre className="rounded-md bg-secondary/50 p-3 text-xs">{`VITE_AI_API_URL = https://your-endpoint

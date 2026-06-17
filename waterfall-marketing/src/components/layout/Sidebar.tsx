@@ -39,7 +39,7 @@ export function Sidebar({ onNavigate }: SidebarProps) {
       <div className="border-b border-sidebar-border p-4">
         <h1 className="gradient-text text-lg font-bold tracking-tight">Waterfall</h1>
         <p className="mt-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">
-          Command Center
+          Marketing
         </p>
       </div>
 

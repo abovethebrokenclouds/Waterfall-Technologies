@@ -1,7 +1,7 @@
 /**
  * data/seed.ts
  * ----------------------------------------------------------------------------
- * The default, realistic dataset the Command Center loads on first run (before
+ * The default, realistic dataset the Waterfall Marketing loads on first run (before
  * the user has saved anything). It is intentionally concrete — real product
  * names, real-sounding campaigns — so the app is useful to demo immediately.
  *
@@ -48,7 +48,7 @@ export const seedProducts: Product[] = [
   },
   {
     id: "prod_command",
-    name: "Command Center",
+    name: "Waterfall Marketing",
     description: "The AI marketing OS you're using right now — campaigns, SEO, email, video, and social in one hub.",
     audience: "Founders and small marketing teams",
     keyBenefits: ["plan campaigns in minutes", "AI-assisted everywhere", "one hub for all channels"],
@@ -85,7 +85,7 @@ export const seedCampaigns: Campaign[] = [
   },
   {
     id: "camp_command_waitlist",
-    name: "Command Center — Beta Waitlist",
+    name: "Waterfall Marketing — Beta Waitlist",
     productId: "prod_command",
     objective: "awareness",
     channels: ["social", "seo", "landing"],
@@ -142,7 +142,7 @@ export const seedSeoTopics: SeoTopic[] = [
 export const seedContent: ContentItem[] = [
   { id: "ct1", title: "How to Beat the ATS in 2026", type: "blog", productId: "prod_resumai", date: "2026-06-18", status: "scheduled" },
   { id: "ct2", title: "ResumAI demo — tailor in 30s", type: "video", productId: "prod_resumai", date: "2026-06-19", status: "draft" },
-  { id: "ct3", title: "LinkedIn: why we built Command Center", type: "social", productId: "prod_command", date: "2026-06-20", status: "scheduled" },
+  { id: "ct3", title: "LinkedIn: why we built Waterfall Marketing", type: "social", productId: "prod_command", date: "2026-06-20", status: "scheduled" },
   { id: "ct4", title: "Welcome sequence refresh", type: "email", productId: "prod_resumai", date: "2026-06-21", status: "idea" },
 ];
 
@@ -161,7 +161,7 @@ export const seedVideos: VideoProject[] = [
 ];
 
 export const seedSocialPosts: SocialPost[] = [
-  { id: "sp1", platform: "linkedin", productId: "prod_command", content: "A year ago marketing ate our whole week. Then we built Command Center so the team could plan campaigns in minutes. #growth #marketing", scheduledAt: "2026-06-20", status: "scheduled", createdAt: "2026-06-12" },
+  { id: "sp1", platform: "linkedin", productId: "prod_command", content: "A year ago marketing ate our whole week. Then we built Waterfall Marketing so the team could plan campaigns in minutes. #growth #marketing", scheduledAt: "2026-06-20", status: "scheduled", createdAt: "2026-06-12" },
   { id: "sp2", platform: "x", productId: "prod_resumai", content: "Most resumes never reach a human.\n\nResumAI tailors yours to beat the ATS.\n\n#jobsearch", status: "draft", createdAt: "2026-06-13" },
   { id: "sp3", platform: "instagram", productId: "prod_resumai", content: "Tailor your resume to any job ✨ Apply 3x faster 🚀 #jobsearch #career #resume", scheduledAt: "2026-06-22", status: "scheduled", createdAt: "2026-06-14" },
 ];
