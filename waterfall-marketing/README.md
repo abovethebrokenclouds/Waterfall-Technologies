@@ -1,4 +1,4 @@
-# Waterfall Command Center
+# Waterfall Marketing
 
 **An AI-assisted marketing OS for Waterfall Technologies and all its apps.**
 Plan campaigns, SEO, email, video, and social — one hub, AI assistance on every screen.
