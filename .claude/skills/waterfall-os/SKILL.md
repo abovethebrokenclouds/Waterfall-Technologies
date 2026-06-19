@@ -43,15 +43,17 @@ where it applies, so the platform stays unified without duplicating files.
 
 ## What's installed where
 
-- **OS-core (every repo):** `waterfall-os` (this), `task-planner`.
+- **OS-core (every repo):** `waterfall-os` (this), `task-planner`, `repo-hygiene`.
 - **Where there's app source:** `security-monitor` (static security sweep),
   and `performance-optimizer` on the React-heavy apps.
-- **cairo-ai-pro (the OS home):** the full set — also `supabase-feature`,
-  `add-route`, `preview-doctor`, plus the `.agents/skills/` authoring set
-  (`tool-authoring`, `ci-cd-conventions`, `release-and-deploy`, `repo-hygiene`,
-  `github-integration-authoring`, `github-webhook-security`,
-  `cairo-global-asset-manager`). These are stack-specific (TanStack Start +
-  Supabase + Cloudflare) and stay cairo-scoped until generalized.
+- **Supabase apps:** `supabase-feature` (RLS-correct migrations + an auth'd
+  server accessor — TanStack server fn or Deno Edge Function).
+- **cairo-ai-pro (the OS home):** the full set — also `add-route`,
+  `preview-doctor`, plus the `.agents/skills/` authoring set (`tool-authoring`,
+  `ci-cd-conventions`, `release-and-deploy`, `github-integration-authoring`,
+  `github-webhook-security`, `cairo-global-asset-manager`). These are
+  stack-specific (TanStack Start + Cloudflare) and stay cairo-scoped until
+  generalized.
 
 List what's actually routable in **this** repo (always do this before planning —
 the set grows):

@@ -49,18 +49,19 @@ canonical skill registry.
 |------|----------|
 | Orient in a repo / platform contract / where the registry is | `waterfall-os` |
 | Decompose / orchestrate multi-skill work | `task-planner` (this) |
+| Repo governance — CODEOWNERS, PR template, branch protection, PR/branch workflow | `repo-hygiene` |
 | Vulns, RLS, SSRF, secrets, auth review (where app source exists) | `security-monitor` |
 | Slow queries, caching, bundle, latency (React-heavy apps) | `performance-optimizer` |
+| New DB table / persisted entity / server accessor (Supabase apps) | `supabase-feature` |
 
 **cairo-ai-pro additionally (stack-specific — only routable in that repo):**
 
 | Need | Route to |
 |------|----------|
-| New DB table / persisted entity / server fn | `supabase-feature` |
 | New page or API route | `add-route` |
 | Lovable preview broken / won't build | `preview-doctor` |
 | New Cairo AI tool | `tool-authoring` |
-| GitHub Action/CI, deploy, webhook, repo governance | `ci-cd-conventions` · `release-and-deploy` · `github-webhook-security` · `repo-hygiene` |
+| GitHub Action/CI, deploy, webhook authoring | `ci-cd-conventions` · `release-and-deploy` · `github-webhook-security` |
 
 | Capability without an installed skill yet — writing, compliance (PII/PHI, SOC2/HIPAA/GDPR), data analysis, UX flows, refactors/JS→TS, API/OpenAPI design, knowledge synthesis | handle inline, and flag "candidate skill to add to the OS" |
 
