@@ -100,8 +100,11 @@ scope" step — never assume cross-repo access or invent another app's internals
    `applies_to` (repo list), `dependencies`, `integration_notes`,
    `recommended_usage`, `status`. Keep arrays sorted by `name`; bump
    `updated_at`.
-4. **Distribute.** Copy universal skills into each in-scope repo's
-   `.claude/skills/`; for out-of-scope repos, note the follow-up.
+4. **Distribute.** Use the portable bundle in cairo-ai-pro
+   (`waterfall-skills/`): rebuild it with `bash waterfall-skills/build.sh`, then
+   in a target repo run `bash waterfall-skills/install.sh` (`--force` to
+   overwrite). Or copy the skill folder into each in-scope repo's
+   `.claude/skills/` directly. For out-of-scope repos, note the follow-up.
 5. **Verify** with `os-status.sh` in each repo it landed in.
 
 ## Quality bar
