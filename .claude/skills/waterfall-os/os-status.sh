@@ -35,5 +35,5 @@ if [ -d ".agents/skills" ]; then list_dir "Authoring skills (.agents/skills)" ".
 
 echo "─────────────────────────────────────────────────────────────────"
 echo "Platform catalog (source of truth):"
-echo "  cairo-ai-pro/app-assets/global/registry.json"
+echo "  Waterfall-Claude-OS/assets/global/registry.json"
 echo "Every Waterfall repo ships OS-core: waterfall-os, task-planner, repo-hygiene."
