@@ -29,17 +29,25 @@ repo.
 ## The canonical skill registry (source of truth)
 
 The platform-wide catalog of every skill — which repo owns it, which repos it
-applies to, its dependencies and status — lives in **cairo-ai-pro**:
+applies to, where it physically ships, its dependencies and status — lives in
+the dedicated OS repo, **Waterfall-Claude-OS**:
 
 ```
-cairo-ai-pro/app-assets/global/registry.json   ← the OS catalog (source of truth)
-cairo-ai-pro/app-assets/global/README.md        ← how the catalog works
+Waterfall-Claude-OS/assets/global/registry.json   ← the OS catalog (source of truth)
+Waterfall-Claude-OS/assets/global/README.md        ← how the catalog works
 ```
+
+Waterfall-Claude-OS is the **home of the Waterfall Claude OS**: it holds the
+canonical registry, a full mirror of every skill on the platform
+(`.claude/skills/` + `.agents/skills/`), and the portable distribution bundle
+(`waterfall-skills/`). Any catalog that lived in an app repo before (e.g.
+`cairo-ai-pro/app-assets/global/`) is now a **superseded mirror** — read from
+and write to Waterfall-Claude-OS.
 
 The registry is a **catalog/manifest**, not the runtime location. Claude Code
 loads skills that physically live in a repo's `.claude/skills/` (and authoring
 skills under `.agents/skills/`). The registry records where each skill lives and
-where it applies, so the platform stays unified without duplicating files.
+where it applies, so the platform stays unified without drift.
 
 ## What's installed where
 
@@ -48,12 +56,16 @@ where it applies, so the platform stays unified without duplicating files.
   and `performance-optimizer` on the React-heavy apps.
 - **Supabase apps:** `supabase-feature` (RLS-correct migrations + an auth'd
   server accessor — TanStack server fn or Deno Edge Function).
-- **cairo-ai-pro (the OS home):** the full set — also `add-route`,
+- **Waterfall-Claude-OS (the OS home):** the canonical registry plus a full
+  mirror of every skill on the platform — both the runtime set (`.claude/skills/`)
+  and the authoring set (`.agents/skills/`) — and the `waterfall-skills/` bundle.
+  This is the source of truth; the app repos are kept in sync from here.
+- **cairo-ai-pro:** authoring home of the stack-specific skills — `add-route`,
   `preview-doctor`, plus the `.agents/skills/` authoring set (`tool-authoring`,
   `ci-cd-conventions`, `release-and-deploy`, `github-integration-authoring`,
   `github-webhook-security`, `cairo-global-asset-manager`). These are
   stack-specific (TanStack Start + Cloudflare) and stay cairo-scoped until
-  generalized.
+  generalized, then mirrored into the OS home.
 
 List what's actually routable in **this** repo (always do this before planning —
 the set grows):
@@ -87,6 +99,8 @@ it to route through the Super Agent.
 A session can only read/write the repo(s) currently in scope. A change that
 touches another Waterfall app must include an explicit "add `<repo>` to session
 scope" step — never assume cross-repo access or invent another app's internals.
+Unifying a skill into the OS home and updating an app repo is a cross-repo change:
+make sure both Waterfall-Claude-OS and the target repo are in scope.
 
 ## Adding or unifying a skill
 
@@ -95,22 +109,26 @@ scope" step — never assume cross-repo access or invent another app's internals
    Keep helpers git-root-relative so they run anywhere.
 2. **Decide scope.** Universal → install in every repo's `.claude/skills/`
    (OS-core). Stack-specific → keep it in its owning repo only.
-3. **Register it** in `cairo-ai-pro/app-assets/global/registry.json`: add an
+3. **Mirror it into the OS home.** Copy the skill folder into
+   `Waterfall-Claude-OS/.claude/skills/` (or `.agents/skills/` for authoring
+   skills) so the full library stays complete in one place.
+4. **Register it** in `Waterfall-Claude-OS/assets/global/registry.json`: add an
    entry with `name`, `type`, `path`, `description`, `source` (owning repo),
-   `applies_to` (repo list), `dependencies`, `integration_notes`,
-   `recommended_usage`, `status`. Keep arrays sorted by `name`; bump
-   `updated_at`.
-4. **Distribute.** Use the portable bundle in cairo-ai-pro
-   (`waterfall-skills/`): rebuild it with `bash waterfall-skills/build.sh`, then
-   in a target repo run `bash waterfall-skills/install.sh` (`--force` to
-   overwrite). Or copy the skill folder into each in-scope repo's
-   `.claude/skills/` directly. For out-of-scope repos, note the follow-up.
-5. **Verify** with `os-status.sh` in each repo it landed in.
+   `applies_to` (repo list), `installed_in` (repos it physically ships to),
+   `dependencies`, `integration_notes`, `recommended_usage`, `status`. Keep
+   arrays sorted by `name`; bump `updated_at`.
+5. **Distribute.** Use the portable bundle (`waterfall-skills/`): rebuild it with
+   `bash waterfall-skills/build.sh`, then in a target repo run
+   `bash waterfall-skills/install.sh` (`--force` to overwrite). Or copy the skill
+   folder into each in-scope repo's `.claude/skills/` directly. For out-of-scope
+   repos, note the follow-up.
+6. **Verify** with `os-status.sh` in each repo it landed in.
 
 ## Quality bar
 
-- Every repo's `.claude/skills/` includes the OS-core, and every skill on the
-  platform appears in the registry exactly once.
+- The OS home (Waterfall-Claude-OS) holds the canonical registry and a complete
+  mirror of every skill; every repo's `.claude/skills/` includes the OS-core, and
+  every skill on the platform appears in the registry exactly once.
 - No raw AI calls, hardcoded models, or manual token caps in app code.
 - Helper scripts are repo-agnostic (resolve the git root; no-op cleanly when a
   directory they scan is absent).
